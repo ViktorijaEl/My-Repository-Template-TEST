@@ -19,7 +19,9 @@ jobs:
           pip install pre-commit
 
       - name: Set up pre-commit
-        run: pre-commit install --install-hooks
+        run: |
+          pre-commit autoupdate
+          pre-commit install --install-hooks
 
       - name: Run pre-commit checks
         run: pre-commit run --all-files
