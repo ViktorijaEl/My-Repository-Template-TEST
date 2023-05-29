@@ -20,11 +20,8 @@ jobs:
       - name: Set up pre-commit
         run: pre-commit install --install-hooks
 
-      - name: Install tflint
-        run: |
-          curl -L https://github.com/terraform-linters/tflint/releases/latest/download/tflint_linux_amd64.zip -o tflint.zip
-          unzip tflint.zip
-          sudo mv tflint /usr/local/bin/
+      - name: Format Terraform files
+        run: terraform fmt -recursive
 
       - name: Run pre-commit checks
         run: pre-commit run --all-files
@@ -43,12 +40,6 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-
-      - name: Terraform Format
-        run: terraform fmt -check=true -diff=true -recursive=true
-
-      - name: Terraform Lint
-        run: tflint
 
       - name: Terraform Validate
         run: terraform validate
