@@ -32,4 +32,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Rest of the steps for linting, testing, and deployment
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Format
+        run: terraform fmt --check
+
+      - name: Terraform Lint
+        run: tflint
+
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+
+      # Additional steps for testing, deployment, etc.
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
