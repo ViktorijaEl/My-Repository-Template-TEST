@@ -15,13 +15,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install pre-commit
-        run: pip install pre-commit
+        run: |
+          pip install pre-commit
 
       - name: Set up pre-commit
-        run: pre-commit install --install-hooks
+        run: |
+          pre-commit autoupdate
+          pre-commit install --install-hooks --no-verify
 
       - name: Run pre-commit checks
-        run: pre-commit run --all-files
+        run: pre-commit run --all-files --show-diff-on-failure
 
   lint-test-deploy:
     name: Lint, Test, and Deploy
