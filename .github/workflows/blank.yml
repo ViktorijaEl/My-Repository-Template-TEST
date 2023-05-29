@@ -45,7 +45,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Format
-        run: terraform fmt --check
+        run: terraform fmt -check=true -diff=true -recursive=true
 
       - name: Terraform Lint
         run: tflint
