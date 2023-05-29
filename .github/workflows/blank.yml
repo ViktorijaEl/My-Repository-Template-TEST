@@ -20,7 +20,7 @@ jobs:
 
       - name: Set up pre-commit
         run: |
-          pre-commit install --install-hooks --no-verify
+          pre-commit install --install-hooks
 
       - name: Run pre-commit checks
         run: |
