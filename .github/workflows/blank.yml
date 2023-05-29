@@ -26,8 +26,14 @@ jobs:
       - name: Set up pre-commit
         run: pre-commit install --install-hooks
 
-      - name: Format Terraform files
-        run: terraform fmt -recursive
+#       - name: Format Terraform files
+#         run: terraform fmt -recursive
+      - name: Terraform fmt
+        run: terraform fmt -check
+        continue-on-error: true
+        
+      - name: Checkov scan
+        uses: bridgecrewio/checkov-action@master
 
       - name: Run pre-commit checks
         run: pre-commit run --all-files
