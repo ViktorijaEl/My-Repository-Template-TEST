@@ -8,8 +8,9 @@ repos:
         types: [terraform]
 
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v3.19.0
+    rev: main
     hooks:
       - id: terraform_fmt
       - id: terraform_docs
       - id: checkov
+
