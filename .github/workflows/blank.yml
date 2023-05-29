@@ -20,11 +20,11 @@ jobs:
 
       - name: Set up pre-commit
         run: |
-          pre-commit autoupdate
           pre-commit install --install-hooks --no-verify
 
       - name: Run pre-commit checks
-        run: pre-commit run --all-files --show-diff-on-failure
+        run: |
+          pre-commit run --all-files
 
   lint-test-deploy:
     name: Lint, Test, and Deploy
@@ -46,11 +46,8 @@ jobs:
       - name: Terraform Lint
         run: tflint
 
-      - name: Terraform Plan
-        run: terraform plan
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+      - name: Terraform Validate
+        run: terraform validate
 
       # Additional steps for testing, deployment, etc.
 
