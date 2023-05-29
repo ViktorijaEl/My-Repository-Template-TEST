@@ -1,0 +1,51 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  pre-commit:
+    name: Pre-commit checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up pre-commit
+        run: pre-commit install --install-hooks
+
+      - name: Run pre-commit checks
+        run: pre-commit run --all-files
+
+  lint-test-deploy:
+    name: Lint, Test, and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      # Additional setup steps as per your requirements, such as configuring credentials, modules, etc.
+
+      - name: Terraform Format
+        run: terraform fmt -check=true -recursive
+
+      - name: Terraform Lint
+        run: tflint
+
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+
+      # Additional steps for testing, deployment, and other actions.
+
+      - name: Cleanup
+        run: terraform destroy -auto-approve
