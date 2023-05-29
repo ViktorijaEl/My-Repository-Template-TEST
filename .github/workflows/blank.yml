@@ -79,8 +79,16 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
+        
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -out=tfplan
 
       # Additional steps for testing, deployment, etc.
+      
+      - name: Terraform Apply
+        if: github.event_name == 'push'
+        run: terraform apply tfplan
 
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve
+#       - name: Terraform Destroy
+#         run: terraform destroy -auto-approve
