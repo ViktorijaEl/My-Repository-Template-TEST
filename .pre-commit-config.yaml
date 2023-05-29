@@ -1,0 +1,15 @@
+repos:
+  - repo: https://github.com/terraform-linters/tflint
+    rev: v0.30.0
+    hooks:
+      - id: tflint
+        args: [--deep, --module, --var-file]
+        exclude: ^examples/
+        types: [terraform]
+
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v3.19.0
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_docs
+      - id: checkov
