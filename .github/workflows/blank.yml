@@ -17,6 +17,12 @@ jobs:
       - name: Install pre-commit
         run: pip install pre-commit
 
+      - name: Install tflint
+        run: |
+          curl -L https://github.com/terraform-linters/tflint/releases/latest/download/tflint_linux_amd64.zip -o tflint.zip
+          unzip tflint.zip
+          sudo mv tflint /usr/local/bin/
+
       - name: Set up pre-commit
         run: pre-commit install --install-hooks
 
