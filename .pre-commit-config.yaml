@@ -4,6 +4,7 @@ repos:
     hooks:
       - id: check-yaml
         args: [--allow-multiple-documents]
+      - id: trailing-whitespace
 
   - repo: https://github.com/gruntwork-io/pre-commit
     rev: v0.1.12
