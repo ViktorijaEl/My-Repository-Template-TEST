@@ -1,15 +1,18 @@
-repos:
-  - repo: https://github.com/terraform-linters/tflint
-    rev: v0.30.0
+repos
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
     hooks:
-      - id: tflint
-        args: [--deep, --module, --var-file]
-        exclude: ^examples/
-        types: [terraform]
-
-  - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v3.19.0
+    -   id: check-yaml
+        args: [--allow-multiple-documents]
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+-   repo: https://github.com/psf/black
+    rev: 19.3b0
     hooks:
-      - id: terraform_fmt
-      - id: terraform_docs
-      - id: checkov
+    -   id: black
+- repo: https://github.com/gruntwork-io/pre-commit
+  rev: v0.1.12
+  hooks:
+    - id: tflint
+    - id: terraform-validate
+    - id: terraform-fmt
