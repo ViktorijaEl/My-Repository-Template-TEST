@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - main
-
+env:
+  terraform-tflint-version: 'latest'
+  
 jobs:
   pre-commit:
     name: Pre-commit checks
