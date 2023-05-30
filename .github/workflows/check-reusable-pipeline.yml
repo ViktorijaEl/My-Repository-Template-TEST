@@ -30,5 +30,7 @@ jobs:
           ls -l
           
       - name: Run Reusable Pipeline
-        uses: ./.github/workflows/action.yml
-        # Add inputs or configuration for the reusable pipeline as needed
+        run: |
+          # Add commands or actions to run the reusable pipeline
+          # Replace the placeholder with the actual command or action
+          echo "Running the reusable pipeline"
