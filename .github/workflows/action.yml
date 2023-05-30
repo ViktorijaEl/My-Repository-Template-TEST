@@ -4,8 +4,9 @@ on:
   push:
     branches:
       - main
-      
+
   workflow_dispatch:
+  
 env:
   terraform-tflint-version: 'latest'
   
@@ -37,24 +38,12 @@ jobs:
 
       - name: Format Terraform files
         run: terraform fmt -recursive
-#       - name: Terraform fmt
-#         run: terraform fmt -check
-#         continue-on-error: true
-        
+
       - name: Checkov scan
         uses: bridgecrewio/checkov-action@master
 
-#       - name: Run pre-commit checks
-#         run: pre-commit run --all-files
-      - name: Configure Git user
-        run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
-
       - name: Commit changes
-        run: git commit -a -m "Fix end of file whitespace"
-
-
+        run: echo "No changes to commit"
 
   lint-test-deploy:
     name: Lint, Test, and Deploy
@@ -79,7 +68,7 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
-        
+      
 #       - name: Terraform Plan
 #         id: plan
 #         run: terraform plan -out=tfplan
@@ -90,5 +79,5 @@ jobs:
 #         if: github.event_name == 'push'
 #         run: terraform apply tfplan
 
-# #       - name: Terraform Destroy
-# #         run: terraform destroy -auto-approve
+#       - name: Terraform Destroy
+#         run: terraform destroy -auto-approve
