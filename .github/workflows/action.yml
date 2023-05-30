@@ -52,8 +52,8 @@ jobs:
           git config --global user.name "Your Name"
 
       - name: Commit changes
-        run: |
-          git commit -a -m "Fix trailing whitespace" --allow-empty
+        run: git commit -a -m "Fix end of file whitespace"
+
 
 
   lint-test-deploy:
