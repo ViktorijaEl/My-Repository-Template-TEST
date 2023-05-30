@@ -1,0 +1,33 @@
+name: Check Reusable Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-reusable-pipeline:
+    name: Check Reusable Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Fetch reusable pipeline
+        uses: actions/checkout@v2
+        with:
+          repository: ViktorijaEl/My-Repository-Template-TEST
+          ref: main # Replace with the branch or tag of the reusable pipeline
+
+      - name: Validate reusable pipeline
+        run: |
+          # Add commands or actions to validate the structure or behavior of the reusable pipeline
+          
+          # Example: Check if the reusable pipeline file exists
+          if [[ ! -f "blank.yml" ]]; then
+            echo "Reusable pipeline file 'blank.yml' does not exist."
+            exit 1
+          fi
+
+          # Perform other validation or testing tasks as needed
