@@ -22,12 +22,12 @@ jobs:
           # Add commands or actions to validate the structure or behavior of the reusable pipeline
           # Example: Check if the reusable pipeline file exists
           if [[ ! -f ".github/workflows/action.yml" ]]; then
-            echo "Reusable pipeline file '.github/workflows/blank.yml' does not exist."
+            echo "Reusable pipeline file '.github/workflows/action.yml' does not exist."
             exit 1
           fi
           
           # Perform other validation or testing tasks as needed
-
+          ls -l
       - name: Run Reusable Pipeline
         uses: ./.github/workflows/action.yml
         # Add inputs or configuration for the reusable pipeline as needed
