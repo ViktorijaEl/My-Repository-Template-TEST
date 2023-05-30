@@ -43,7 +43,16 @@ jobs:
         uses: bridgecrewio/checkov-action@master
 
       - name: Commit changes
-        run: echo "No changes to commit"
+        run: |
+          if [[ ${{ github.event_name }} == 'pull_request' ]]; then
+            if git diff --quiet; then
+              echo "No changes to commit"
+            else
+              git commit -a -m "Fix end of file whitespace"
+            fi
+          else
+            echo "Commit step skipped. Running on push event."
+          fi
 
   lint-test-deploy:
     name: Lint, Test, and Deploy
